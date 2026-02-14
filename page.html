@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Prince Mpho Msimango</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --sidebar-bg: #ffffff;
+      --card-bg: #ffffff;
+      --accent-orange: #e67e22;
+      --text-main: #2c3e50;
+      --text-muted: #95a5a6;
+      --tag-bg: #fdfdfd;
+      --border-radius: 16px;
+    }
+
+    /* DARK MODE VARIABLES */
+    body.dark-mode {
+      --bg-color: #0f172a;
+      --sidebar-bg: #1e293b;
+      --card-bg: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --tag-bg: #334155;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      display: flex;
+      min-height: 100vh;
+      color: var(--text-main);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* --- Sidebar --- */
+    nav {
+      width: 80px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      transition: background 0.3s ease;
+    }
+
+    .nav-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-icon.active,
+    .nav-icon.orange {
+      background: var(--accent-orange);
+      color: white;
+    }
+
+    .nav-icon:hover { transform: translateY(-2px); }
+
+    /* --- Main Content --- */
+    main {
+      flex: 1;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* --- Profile Card --- */
+    .profile-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .profile-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 130px;
+      height: 130px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    .profile-info h1 { margin: 0; }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .social-icons i {
+      background: #1a1a1a;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    /* --- Skills & Hobbies --- */
+    .skills-hobbies-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rating {
+      background: var(--accent-orange);
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    /* --- Bottom Layout --- */
+    .bottom-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+    }
+
+    .stats-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .stat-item {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: background 0.3s ease;
+    }
+
+    a {
+  color: inherit;       /* Makes the link the same color as the parent text */
+  text-decoration: none; /* Removes the underline */
+}
+
+    .stat-item label {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .stat-item span { font-weight: 700; }
+
+    .about-box {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      line-height: 1.6;
+      transition: background 0.3s ease;
+    }
+
+    .about-box h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .about-box p {
+      color: var(--text-main);
+      margin-bottom: 15px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      main {
+        padding: 15px;
+      }
+
+      .skills-hobbies-row,
+      .bottom-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .video-box { min-height: 250px; }
+
+      /* Keep sidebar vertical and on left */
+      nav {
+        width: 70px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+      }
+
+      main {
+        margin-left: 70px; /* Push content right so sidebar doesn't overlap */
+      }
+    }
+
+    /* --- ADDED ANIMATIONS --- */
+    @keyframes fadeInPage {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .profile-card { animation: scaleIn 0.5s ease forwards; }
+    .about-box { animation: fadeInPage 0.6s ease 0.2s both; }
+    .stats-stack { animation: fadeInPage 0.6s ease 0.3s both; }
+    
+    .tag, .stat-item, .social-icons i {
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+    }
+
+    .tag:hover, .stat-item:hover { transform: scale(1.05); }
+    .social-icons i:hover { transform: translateY(-5px) rotate(5deg); cursor: pointer; }
+    
+  </style>
+</head>
+<body>
+  <nav>
+    <div>
+      <div class="nav-icon active"><i class="fa-solid fa-user"></i></div>
+      <div class="nav-icon" id="theme-toggle"><i class="fa-solid fa-id-card"></i></div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="profile-card">
+      <div class="profile-header">
+        <img src="/Portfolio/PRINCE.jpg" alt="Profile" class="profile-img" />
+        <div class="profile-info">
+          <h1>Prince Mpho Msimango</h1>
+          <p>IT Systems Proffesional</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/prince-mpho-msimango-26b3b6282/"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/princemphomsimango/"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:princemsimango27@gmail.com" title="Email me"><i class="far fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-hobbies-row">
+        <div>
+          <span class="section-label">Skills & Ratings</span>
+          <div class="tags">
+            <div class="tag">Network Troubleshooting <span class="rating">8</span></div>
+            <div class="tag">Web Development <span class="rating">4</span></div>
+             <div class="tag">Office 365 <span class="rating">8</span></div>
+            <div class="tag">Fortinet <span class="rating">4</span></div>
+          
+          </div>
+        </div>
+        <div>
+          <span class="section-label">read more on what i do by clicking on these buttons</span>
+          <div class="tags">
+            <a href="/Portfolio/Networksupport.html" class="tag">Network Support Engineer</a>
+            <a href="/Portfolio/Softwaredev.html" style="text-decoration:none;"><div class="tag">Software Developer</div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-layout">
+      <div class="stats-stack">
+        <a class="stat-item" href="/Portfolio/experience.html" style="text-decoration:none; color:inherit;"><label>Experience</label><span>Check History, click HERE</span></a>
+        <div class="stat-item"><label>Info</label><span><br><br><br>OPEN FOR OPPORTUNITES</span></div>
+      </div>
+
+      <div class="about-box">
+        <span class="section-label">About Me</span>
+        <h2>Professional Summary</h2>
+        <p>I’m an IT professional passionate about both Software Development and Network Engineering — two fields that power modern digital transformation. My goal is to bridge the gap between code and connectivity, developing innovative systems that are both functional and secure.With hands-on experience in web development, network support, and data handling, I enjoy problem-solving, learning new technologies, and working in environments that challenge me to grow. As an Alumni with a Diploma in Information Systems at the Richfield Graduate Institute of Technology, I am using my theoretical experience through my Internship to sharpen both my technical and collaborative skills.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    if (localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark-mode");
+      themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+
+      if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+        themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+      } else {
+        localStorage.setItem("theme", "light");
+        themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+      }
+    });
+  </script>
+</body>
+</html>
