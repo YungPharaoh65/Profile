@@ -48,7 +48,7 @@
     }
 
     .nav-container {
-      max-width: 1150px;
+      max-width: 1150px; /* Wider Desktop View */
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -71,7 +71,7 @@
 
     /* --- Main Layout --- */
     main {
-      max-width: 1150px;
+      max-width: 1150px; /* Wider Desktop View */
       margin: 40px auto;
       padding: 0 20px;
     }
@@ -173,7 +173,6 @@
       display: grid;
       grid-template-columns: 320px 1fr;
       gap: 25px;
-      margin-bottom: 25px;
     }
 
     .stats-stack { display: flex; flex-direction: column; gap: 20px; }
@@ -212,41 +211,6 @@
 
     .about-box h2 { margin-top: 0; margin-bottom: 15px; font-size: 1.8rem; }
 
-    /* --- NEW: Experience & Education Sections --- */
-    .experience-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      animation: fadeInPage 0.6s ease 0.4s both;
-    }
-
-    .experience-card {
-      background: var(--card-bg);
-      border-radius: var(--border-radius);
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-      border-left: 4px solid var(--accent-orange);
-      transition: 0.3s;
-    }
-
-    .experience-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-    }
-
-    .exp-title h3 { margin: 0; font-size: 1.2rem; }
-    .exp-title p { margin: 2px 0; color: var(--accent-blue); font-weight: 600; font-size: 0.9rem; }
-    .exp-date { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
-
-    .exp-details { padding-left: 18px; margin: 0; font-size: 0.9rem; }
-    .exp-details li { margin-bottom: 8px; }
-
     /* --- Animations --- */
     @keyframes fadeInPage {
       from { opacity: 0; transform: translateY(15px); }
@@ -258,17 +222,22 @@
     }
 
     @media (max-width: 900px) {
-      .skills-hobbies-row, .bottom-layout, .experience-section { grid-template-columns: 1fr; }
+      .skills-hobbies-row, .bottom-layout { grid-template-columns: 1fr; }
       .profile-header { justify-content: center; text-align: center; }
-      .nav-links span { display: none; }
+      .nav-links { gap: 15px; }
+      .nav-links span { display: none; } /* Hide text on mobile nav, keep icons if added */
     }
   </style>
 </head>
-<body class="dark-mode"> <header>
+<body>
+
+  <header>
     <div class="nav-container">
       <div style="font-weight: 900; color: var(--accent-orange); font-size: 1.4rem; letter-spacing: -1px;">PRINCE.NET</div>
       <nav class="nav-links">
-        <a href="/Prince Mpho Msimango - Network Support Engineer.pdf" download><i class="fa-solid fa-file-pdf"></i> <span>Download CV</span></a>
+        <a href="/index.html" class="active"><i class="fa-solid fa-user"></i> <span>Profile</span></a>
+        <a href="/experience.html"><i class="fa-solid fa-briefcase"></i> <span>Experience</span></a>
+        <a href="/Network Mpho Msimango.pdf" download><i class="fa-solid fa-file-pdf"></i> <span>Download CV</span></a>
         <div class="theme-icon" id="theme-toggle"><i class="fa-solid fa-sun"></i></div>
       </nav>
     </div>
@@ -280,11 +249,11 @@
         <img src="/PRINCE.jpg" alt="Prince Mpho Msimango" class="profile-img" />
         <div class="profile-info">
           <h1>Prince Mpho Msimango</h1>
-          <p>Junior Network Support Engineer</p>
+          <p>Network Support Engineer | IT Infrastructure Specialist</p>
           <div class="social-icons">
             <a href="https://www.linkedin.com/in/prince-mpho-msimango-26b3b6282/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
             <a href="https://www.instagram.com/princemphomsimango/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="mailto:princemsimango27@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="mailto:princemsimango27@gmail.com" title="Email me"><i class="fa-solid fa-envelope"></i></a>
           </div>
         </div>
       </div>
@@ -295,16 +264,16 @@
           <div class="tags">
             <div class="tag">Network Troubleshooting <span class="rating">8</span></div>
             <div class="tag">Firewall Configuration <span class="rating">7</span></div>
-            <div class="tag">Office 365 Admin <span class="rating">8</span></div>
+            <div class="tag">Office 365 Administration <span class="rating">8</span></div>
             <div class="tag">Fortinet NSE 1-3 <span class="rating">7</span></div>
-            <div class="tag">L2/L3 Routing <span class="rating">8</span></div>
+            <div class="tag">L2/L3 Routing & Switching <span class="rating">8</span></div>
           </div>
         </div>
         <div>
           <span class="section-label">Specializations</span>
           <div class="tags">
-            <a href="#" class="tag" style="background: rgba(230, 126, 34, 0.1); border-color: var(--accent-orange);">Network Support</a>
-            <a href="#" class="tag">Documentation</a>
+            <a href="/Networksupport.html" class="tag" style="background: rgba(230, 126, 34, 0.1); border-color: var(--accent-orange);">Network Support</a>
+            <a href="/Softwaredev.html" class="tag">Software Development</a>
           </div>
         </div>
       </div>
@@ -312,6 +281,10 @@
 
     <div class="bottom-layout">
       <div class="stats-stack">
+        <a class="stat-item" href="/experience.html">
+          <label>Career History</label>
+          <span>View Professional Experience <i class="fa-solid fa-arrow-right" style="font-size: 12px; margin-left: 5px;"></i></span>
+        </a>
         <div class="stat-item">
           <label>Status</label>
           <span style="color: #2ecc71;"><i class="fa-solid fa-circle-check"></i> Available for Opportunities</span>
@@ -320,53 +293,18 @@
           <label>Location</label>
           <span>Pretoria, South Africa</span>
         </div>
-        <div class="stat-item">
-          <label>Certification Target</label>
-          <span>Cisco CCNA 200-301</span>
-        </div>
       </div>
 
       <div class="about-box">
         <span class="section-label">Professional Summary</span>
         <h2>Bridging Connectivity & Code</h2>
-        <p>Currently serving as a <strong>Junior Network Engineer at Echo Service Provider</strong>, I manage first-line support for complex connectivity issues, focusing on maintaining 99.9% uptime.</p>
-        <p>With a Diploma in Information Technology from Richfield Graduate Institute, I combine theoretical principles with hands-on experience in FortiGate configuration and Cisco environments to deliver secure, scalable digital solutions.</p>
+        <p>I am a dedicated IT professional specializing in <strong>Network Engineering</strong> and <strong>Systems Infrastructure</strong>. My expertise lies in managing high-availability environments, ensuring network reliability, and implementing robust security measures.</p>
+        
+        <p>Currently serving as a Junior Network Engineer at Echo Service Provider, I manage first-line support for complex connectivity issues, focusing on maintaining 99.9% uptime. With a Diploma in Information Technology from Richfield Graduate Institute, I combine theoretical principles with hands-on experience in FortiGate configuration and Cisco environments to deliver secure, scalable digital solutions.</p>
+        
+        <p>I am currently advancing my technical roadmap by preparing for the <strong>Cisco CCNA 200-301</strong> certification to further strengthen my routing and switching proficiency.</p>
       </div>
     </div>
-
-    <span class="section-label" style="margin-left: 5px;">Work Experience & Education</span>
-    <div class="experience-section">
-      <div class="experience-card">
-        <div class="exp-header">
-          <div class="exp-title">
-            <h3>Junior Network Engineer</h3>
-            <p>Echo Service Provider</p>
-          </div>
-          <div class="exp-date">2025 - Present</div>
-        </div>
-        <ul class="exp-details">
-          <li>Managing first-line support for complex ISP connectivity.</li>
-          <li>Maintaining 99.9% network uptime for enterprise clients.</li>
-          <li>FortiGate configuration and network security monitoring.</li>
-        </ul>
-      </div>
-
-      <div class="experience-card" style="border-left-color: var(--accent-blue);">
-        <div class="exp-header">
-          <div class="exp-title">
-            <h3>Diploma in Information Technology</h3>
-            <p>Richfield Graduate Institute</p>
-          </div>
-          <div class="exp-date">Completed - 2025</div>
-        </div>
-        <ul class="exp-details">
-          <li>Specialized in Systems Infrastructure and Programming.</li>
-          <li>Foundational knowledge in Database Design and Web Tech.</li>
-          <li>Gained proficiency in Network Administration and Troubleshooting.</li>
-        </ul>
-      </div>
-    </div>
-
   </main>
 
   <script>
@@ -374,8 +312,9 @@
     const body = document.body;
     const themeIcon = themeToggle.querySelector("i");
 
-    if (localStorage.getItem("theme") === "light") {
-      body.classList.remove("dark-mode");
+    // Check for saved theme
+    if (localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark-mode");
       themeIcon.classList.replace("fa-sun", "fa-moon");
     }
 
@@ -383,7 +322,12 @@
       body.classList.toggle("dark-mode");
       const isDark = body.classList.contains("dark-mode");
       localStorage.setItem("theme", isDark ? "dark" : "light");
-      themeIcon.classList.replace(isDark ? "fa-sun" : "fa-moon", isDark ? "fa-moon" : "fa-sun");
+      
+      if (isDark) {
+        themeIcon.classList.replace("fa-sun", "fa-moon");
+      } else {
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+      }
     });
   </script>
 </body>

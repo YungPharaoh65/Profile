@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Prince Mpho Msimango</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --accent-orange: #e67e22;
+      --accent-blue: #2980b9;
+      --text-main: #2c3e50;
+      --text-muted: #95a5a6;
+      --tag-bg: #fdfdfd;
+      --border-radius: 16px;
+    }
+
+    body.dark-mode {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --tag-bg: #334155;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      color: var(--text-main);
+      transition: background 0.3s ease, color 0.3s ease;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .nav-links { display: flex; gap: 25px; align-items: center; }
+    .nav-links a { 
+      text-decoration: none; 
+      color: var(--text-main); 
+      font-weight: 600; 
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent-orange); }
+
+    .theme-toggle-btn { cursor: pointer; font-size: 18px; color: var(--text-main); background: none; border: none; }
+
+    main {
+      max-width: 1150px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      animation: fadeInPage 0.6s ease forwards;
+    }
+
+    .profile-header { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; }
+    .profile-img {
+      width: 140px; height: 140px; border-radius: 24px;
+      object-fit: cover; border: 3px solid var(--accent-orange);
+    }
+
+    .social-icons { display: flex; gap: 12px; margin-top: 15px; }
+    .social-icons a i {
+      background: var(--text-main); color: var(--card-bg);
+      padding: 10px; border-radius: 10px; transition: 0.3s;
+    }
+    .social-icons a i:hover { background: var(--accent-orange); transform: translateY(-3px); }
+
+    .split-row {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 40px;
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 800; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tag {
+      background: var(--tag-bg); padding: 10px 18px; border-radius: 30px;
+      font-size: 13px; font-weight: 600; border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex; align-items: center; gap: 10px; transition: 0.3s;
+      text-decoration: none; color: inherit;
+    }
+
+    .rating {
+      background: var(--accent-orange); color: white; width: 22px; height: 22px;
+      border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px;
+    }
+
+    .exp-item { margin-bottom: 30px; padding-left: 20px; border-left: 2px solid var(--accent-orange); position: relative; }
+    .exp-item::before {
+      content: ''; position: absolute; left: -7px; top: 0; 
+      width: 12px; height: 12px; border-radius: 50%; background: var(--accent-orange);
+    }
+
+    .progress-bar {
+      width: 100%; background: rgba(0,0,0,0.1); height: 6px; border-radius: 3px; margin-top: 10px;
+    }
+    .progress-fill { background: var(--accent-blue); height: 100%; border-radius: 3px; transition: 1s ease-out; }
+
+    @keyframes fadeInPage { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .split-row { grid-template-columns: 1fr; }
+      .profile-header { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div style="font-weight: 900; color: var(--accent-orange); font-size: 1.4rem;">PRINCE.NET</div>
+      <nav class="nav-links">
+        <a href="index.html">Profile</a>
+        <a href="/experience.html">Experience</a>
+        <a href="/Prince Msimango CV.pdf" download><i class="fa-solid fa-file-pdf"></i> CV</a>
+        <button class="theme-toggle-btn" id="theme-toggle"><i class="fa-solid fa-sun"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="profile-header">
+        <img src="/PRINCE.jpg" alt="Prince Mpho Msimango" class="profile-img" />
+        <div class="profile-info">
+          <h1 style="margin:0;">Prince Mpho Msimango</h1>
+          <p>Network Support Engineer | Infrastructure & Security</p>
+          <div class="social-icons">
+            <a href="https://linkedin.com/in/prince-mpho-msimango-26b3b6282/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="mailto:princemsimango27@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <span class="section-label">Professional Certifications</span>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+            <div class="tag" style="justify-content: flex-start; padding: 15px; border-radius: 12px;">
+              <i class="fa-solid fa-shield-halved" style="color: #27ae60; font-size: 1.2rem;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 800;">Fortinet NSE 1-3</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Verified Security Expert</div>
+              </div>
+            </div>
+            <div class="tag" style="justify-content: flex-start; padding: 15px; border-radius: 12px;">
+              <i class="fa-solid fa-network-wired" style="color: var(--accent-blue); font-size: 1.2rem;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 800;">Cisco: Network Basics</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Routing & Switching</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="section-label">Side Projects / Lab Work</span>
+          <div style="background: var(--tag-bg); padding: 20px; border-radius: 12px; border: 1px dashed var(--accent-blue);">
+            <h4 style="margin: 0 0 10px 0; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-flask-vial" style="color: var(--accent-blue);"></i> 
+              FortiGate 60F Lab
+            </h4>
+            <p style="font-size: 13px; margin: 0;">
+              Configured a 60F Firewall with interface zoning, NAT, and SSL-VPN for secure remote access.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <span class="section-label">Professional Experience</span>
+          <div class="exp-item">
+            <div style="display: flex; justify-content: space-between;">
+              <h3 style="margin: 0;">Junior Network Engineer</h3>
+              <span style="font-size: 11px; font-weight: 700; color: var(--accent-orange);">2023 — PRESENT</span>
+            </div>
+            <p style="color: var(--accent-blue); font-weight: 600; margin: 5px 0;">Echo Service Provider</p>
+            <ul style="font-size: 14px; padding-left: 18px;">
+              <li>Resolving L2 connectivity escalations for ISP clients.</li>
+              <li>Monitoring OSPF/BGP health on core infrastructure.</li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div style="display: flex; justify-content: space-between;">
+              <h3 style="margin: 0;">IT & Network Technician</h3>
+              <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">2022 — 2023</span>
+            </div>
+            <p style="color: var(--accent-blue); font-weight: 600; margin: 5px 0;">Infrastructure Solutions Ltd.</p>
+            <ul style="font-size: 14px; padding-left: 18px;">
+              <li>FortiGate 60F deployment & structured cabling.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <span class="section-label">Education & Prep</span>
+          <div style="background: var(--tag-bg); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05);">
+            <h4 style="margin: 0; font-size: 14px;">Diploma in IT</h4>
+            <p style="font-size: 12px; margin: 5px 0;">Richfield Graduate Institute</p>
+          </div>
+          <div style="background: var(--tag-bg); padding: 15px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
+            <h4 style="margin: 0; font-size: 14px;">Cisco CCNA Prep</h4>
+            <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+            <span style="font-size: 10px; margin-top: 5px; display: block;">Readiness: 75%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+    const themeIcon = themeToggle.querySelector("i");
+
+    if (localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark-mode");
+      themeIcon.classList.replace("fa-sun", "fa-moon");
+    }
+
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      const isDark = body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      themeIcon.classList.replace(isDark ? "fa-sun" : "fa-moon", isDark ? "fa-moon" : "fa-sun");
+    });
+  </script>
+</body>
+</html>
