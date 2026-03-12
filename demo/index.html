@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Prince Mpho Msimango</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --accent-orange: #e67e22;
+      --accent-blue: #2980b9;
+      --text-main: #2c3e50;
+      --text-muted: #95a5a6;
+      --tag-bg: #fdfdfd;
+      --border-radius: 16px;
+    }
+
+    body.dark-mode {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --tag-bg: #334155;
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      color: var(--text-main);
+      transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* --- Animations Definitions --- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulseGreen {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.5s; }
+
+    /* --- Header --- */
+    header {
+      background: var(--card-bg);
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.4s ease;
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .theme-icon { cursor: pointer; font-size: 18px; transition: transform 0.3s ease; }
+    .theme-icon:hover { color: var(--accent-orange); transform: rotate(15deg); }
+
+    /* --- Main Layout --- */
+    main {
+      max-width: 1150px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      animation: scaleIn 0.6s ease forwards;
+    }
+
+    .profile-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 24px;
+      object-fit: cover;
+      border: 3px solid var(--accent-orange);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .profile-img:hover { transform: scale(1.05) rotate(2deg); }
+
+    .profile-info h1 { margin: 0; font-size: 2rem; }
+    .profile-info p { margin: 5px 0; font-weight: 500; color: var(--text-muted); }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .social-icons a i {
+      background: var(--text-main);
+      color: var(--card-bg);
+      padding: 10px;
+      border-radius: 10px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .social-icons a i:hover { 
+      background: var(--accent-orange); 
+      transform: translateY(-5px); 
+      box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+    }
+
+    .skills-hobbies-row {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 40px;
+      margin-top: 35px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tag {
+      background: var(--tag-bg);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s ease, border-color 0.3s ease;
+    }
+    .tag:hover {
+      background: var(--card-bg);
+      border-color: var(--accent-orange);
+      transform: translateY(-2px);
+    }
+
+    .rating {
+      background: var(--accent-orange);
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .bottom-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .stats-stack { display: flex; flex-direction: column; gap: 20px; }
+    
+    .stat-item {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: 0.3s ease, border-color 0.3s ease;
+    }
+    .stat-item:hover { border-color: var(--accent-blue); }
+
+    .stat-item.status-available {
+      animation: pulseGreen 3s infinite;
+    }
+
+    .stat-item label {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+
+    .about-box {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px;
+      transition: transform 0.3s ease;
+    }
+
+    .experience-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .experience-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      border-left: 4px solid var(--accent-orange);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-left-color 0.3s ease;
+    }
+
+    .experience-card:hover { 
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-left-width: 8px;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .exp-title h3 { margin: 0; font-size: 1.2rem; }
+    .exp-title p { margin: 2px 0; color: var(--accent-blue); font-weight: 600; font-size: 0.9rem; transition: color 0.3s ease; }
+    .exp-date { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; transition: color 0.3s ease; }
+
+    .exp-details { padding-left: 18px; margin: 0; font-size: 0.9rem; }
+    .exp-details li { margin-bottom: 8px; }
+
+    /* --- Chatbot Widget --- */
+    .chat-widget {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 2000;
+      animation: scaleIn 0.6s ease 1s forwards; /* Add delay */
+      opacity: 0; /* Hidden initially */
+    }
+
+    .chat-button {
+      width: 60px;
+      height: 60px;
+      background: var(--accent-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(230, 126, 34, 0.4);
+      margin-left: auto;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .chat-button:hover { transform: scale(1.1); }
+
+    .chat-window {
+      width: 320px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+      margin-bottom: 15px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.1);
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .chat-header {
+      background: var(--accent-orange);
+      padding: 20px;
+      color: white;
+    }
+
+    .status-dot {
+      height: 8px;
+      width: 8px;
+      background-color: #2ecc71;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .chat-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-option {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 12px 15px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      background: var(--tag-bg);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: 0.3s ease, transform 0.3s ease;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .contact-option:hover {
+      border-color: var(--accent-orange);
+      transform: translateX(5px);
+      background: var(--card-bg);
+    }
+
+    .contact-option i {
+      width: 20px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .contact-option.whatsapp i { color: #25d366; }
+    .contact-option.linkedin i { color: #0077b5; }
+    .contact-option.email i { color: #e67e22; }
+    .contact-option.call i { color: #2980b9; }
+
+    @media (max-width: 900px) {
+      .skills-hobbies-row, .bottom-layout, .experience-section { grid-template-columns: 1fr; }
+      .profile-header { justify-content: center; text-align: center; }
+      .chat-window { width: 280px; right: 10px; }
+    }
+  </style>
+</head>
+<body class="dark-mode"> 
+  <header>
+    <div class="nav-container">
+      <div style="font-weight: 900; color: var(--accent-orange); font-size: 1.4rem; letter-spacing: -1px;">PRINCE.NET</div>
+      <nav class="nav-links">
+        <div class="theme-icon" id="theme-toggle"><i class="fa-solid fa-sun"></i></div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="profile-card">
+      <div class="profile-header">
+        <img src="/PRINCE.jpg" alt="Prince Mpho Msimango" class="profile-img" />
+        <div class="profile-info">
+          <h1>Prince Mpho Msimango</h1>
+          <p>Junior Network Support Engineer</p>
+          <br>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/prince-mpho-msimango-26b3b6282/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://wa.me/qr/V2SZVAGZ5VPTP1" target="_blank"><i class="fa-brands fab fa-whatsapp"></i></a>
+            <a href="mailto:princemsimango27@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-hobbies-row">
+        <div>
+          <span class="section-label" onclick="scrollToSection('technical-mastery')">Technical Mastery</span>
+          <div class="tags" id="technical-mastery">
+            <div class="tag">Cisco Switches & Routers <span class="rating">8</span></div>
+            <div class="tag">Firewall Management <span class="rating">7</span></div>
+            <div class="tag">Juniper / Junos MAC Tracking <span class="rating">8</span></div>
+            <div class="tag">P1 Incident Restoration <span class="rating">8</span></div>
+            <div class="tag">Cisco Meraki Dashboard <span class="rating">8</span></div>
+          </div>
+        </div>
+        <div>
+          <span class="section-label" onclick="scrollToSection('field-specializations')">Field Specializations</span>
+          <div class="tags" id="field-specializations">
+            <div class="tag" style="background: rgba(230, 126, 34, 0.1); border-color: var(--accent-orange);">Onsite Branch Support</div>
+            <div class="tag">Vendor Management</div>
+            <div class="tag">Office 365</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-layout animate-in delay-1">
+      <div class="stats-stack">
+        <div class="stat-item status-available">
+          <label>CAREER PATHWAY</label>
+          <span style="color: #2ecc71;"><i class="fa-solid fa-circle-check"></i> Available for Opportunities</span>
+        </div>
+        <div class="stat-item">
+          <label>Base Location</label>
+          <span>Pretoria, South Africa</span>
+        </div>
+        <div class="stat-item">
+          <label>Target Exam</label>
+          <span>Cisco CCNA 200-301</span>
+        </div>
+      </div>
+
+      <div class="about-box">
+        <span class="section-label">Professional Summary</span>
+        <h2>High-Stakes Connectivity Support</h2>
+        <p>Currently serving as a <strong>Junior Network Support Engineer at Echo Service Provider</strong>, I specialize in the maintenance and restoration of major business branch infrastructures. I provide end-to-end support for <strong>Cisco switches, routers, firewalls, and industrial printers</strong>.</p>
+        <p>I am experienced in handling critical <strong>P1 issues</strong> both remotely and onsite, ensuring minimal downtime for enterprise clients. My role involves managing <strong>third-party service providers</strong> and strategically delegating high-complexity tasks to senior engineering levels to ensure rapid resolution and 99.9% uptime.</p>
+      </div>
+    </div>
+
+    <span class="section-label animate-in delay-2" style="margin-left: 5px;">Professional Path</span>
+    <div class="experience-section animate-in delay-2">
+      <div class="experience-card">
+        <div class="exp-header">
+          <div class="exp-title">
+            <h3>Junior Network Support Engineer</h3>
+            <p>Echo Service Provider</p>
+          </div>
+          <div class="exp-date">2025 - Present</div>
+        </div>
+        <ul class="exp-details">
+          <li><strong>Branch Infrastructure:</strong> Troubleshooting Cisco switches, routers, firewalls, and enterprise printers for major business branches.</li>
+          <li><strong>P1 Response:</strong> Managing Priority 1 (P1) incidents remotely and onsite to ensure rapid service restoration.</li>
+          <li><strong>Third-Party Management:</strong> Liaising with ISP vendors and third-party hardware providers to resolve circuit and equipment failures.</li>
+          <li><strong>Technical Delegation:</strong> Identifying task complexity and delegating specialized issues to Tier 2/3 engineering teams.</li>
+          <li><strong>Juniper Diagnostics:</strong> Utilizing Juniper software for MAC tracking and port-level status verification.</li>
+        </ul>
+      </div>
+
+      <div class="experience-card" style="border-left-color: var(--accent-blue);">
+        <div class="exp-header">
+          <div class="exp-title">
+            <h3>Diploma in Information Technology</h3>
+            <p>Richfield Graduate Institute</p>
+          </div>
+          <div class="exp-date">2025 - Completed</div>
+        </div>
+        <ul class="exp-details">
+          <li>Specialized in Systems Infrastructure and Network Administration.</li>
+          <li>Focus on L2/L3 Routing, Database Management, and Web Technologies.</li>
+          <li>Practically applied network security and hardware troubleshooting methodologies.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <div class="chat-widget animate-in delay-3">
+    <div class="chat-window" id="chat-window">
+      <div class="chat-header">
+        <div style="font-size: 0.8rem; opacity: 0.8; margin-bottom: 4px;">
+          <span class="status-dot"></span> Online
+        </div>
+        <h4 style="margin:0;">Let's Connect</h4>
+        <p style="margin: 5px 0 0; font-size: 0.75rem; opacity: 0.9;">Choose your preferred contact method:</p>
+      </div>
+      <div class="chat-body">
+      
+        <a href="https://www.linkedin.com/in/prince-mpho-msimango-26b3b6282/" target="_blank" class="contact-option linkedin">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+        </a>
+        <a href="mailto:princemsimango27@gmail.com" class="contact-option email">
+          <i class="fa-solid fa-envelope"></i> Send an Email
+        </a>
+        <a href="tel:0618135054" class="contact-option call">
+          <i class="fa-solid fa-phone"></i> Direct Call
+        </a>
+      </div>
+    </div>
+    <div class="chat-button" onclick="toggleChat()">
+      <i class="fa-solid fa-comment-dots"></i>
+    </div>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+    const themeIcon = themeToggle.querySelector("i");
+
+    if (localStorage.getItem("theme") === "light") {
+      body.classList.remove("dark-mode");
+      themeIcon.classList.replace("fa-sun", "fa-moon");
+    }
+
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      const isDark = body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      themeIcon.classList.replace(isDark ? "fa-sun" : "fa-moon", isDark ? "fa-moon" : "fa-sun");
+    });
+
+    function toggleChat() {
+      const win = document.getElementById('chat-window');
+      win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
